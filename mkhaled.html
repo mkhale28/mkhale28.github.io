@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohamed Khaled — Full-Stack Software Engineer</title>
+<meta name="description" content="Mohamed Khaled, a Cairo-based full-stack engineer building ERP systems, e-commerce platforms, and blockchain-secured apps with .NET, WPF, Next.js, React, and Django.">
+<meta name="theme-color" content="#0B0E14">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mohamed Khaled — Full-Stack Software Engineer">
+<meta property="og:description" content="Full-stack engineer who ships real products: ERP, e-commerce, and blockchain medical records.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B0E14'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='700' font-size='30' text-anchor='middle' fill='%234FD1C5'%3EMK%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0E14;
+    --surface:#121722;
+    --surface2:#1A2130;
+    --line:#232B3B;
+    --text:#E7EAF0;
+    --muted:#7C8698;
+    --accent:#4FD1C5;
+    --accent-dim:rgba(79,209,197,0.12);
+    --amber:#F2B84B;
+    --amber-dim:rgba(242,184,75,0.12);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--accent);color:var(--bg);}
+  a{color:inherit;text-decoration:none;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
+  h1,h2,h3{font-family:'Space Grotesk','Segoe UI',system-ui,sans-serif;letter-spacing:-0.02em;}
+
+  /* Nav */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(11,14,20,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:68px;}
+  .logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;}
+  .logo span{color:var(--accent);}
+  .navlinks{display:flex;gap:32px;font-size:14px;color:var(--muted);}
+  .navlinks a{transition:color .2s;}
+  .navlinks a:hover{color:var(--text);}
+  .navlinks .cta{
+    color:var(--bg);background:var(--accent);
+    padding:8px 18px;border-radius:6px;font-weight:600;
+  }
+  @media(max-width:720px){.navlinks a:not(.cta){display:none;}}
+
+  /* Hero */
+  .hero{
+    padding:170px 0 110px;
+    position:relative;
+    background:
+      radial-gradient(600px 300px at 85% 10%, rgba(79,209,197,0.08), transparent 60%),
+      radial-gradient(500px 260px at 10% 90%, rgba(242,184,75,0.05), transparent 60%);
+  }
+  .hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:64px;align-items:center;}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);
+    border:1px solid var(--line);background:var(--surface);
+    padding:6px 12px;border-radius:100px;margin-bottom:24px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);}
+  .hero h1{font-size:52px;font-weight:700;line-height:1.08;margin-bottom:20px;}
+  .hero h1 .line2{color:var(--muted);}
+  .hero p.lead{font-size:17px;color:var(--muted);max-width:480px;margin-bottom:32px;}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    padding:13px 24px;border-radius:7px;font-size:14px;font-weight:600;
+    display:inline-flex;align-items:center;gap:8px;transition:transform .15s, background .15s;
+  }
+  .btn-primary{background:var(--accent);color:var(--bg);}
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-ghost{border:1px solid var(--line);color:var(--text);}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+
+  /* Dashboard mock - signature element */
+  .dash{
+    background:var(--surface);border:1px solid var(--line);border-radius:14px;
+    overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,0.6);
+  }
+  .dash-top{
+    display:flex;align-items:center;gap:8px;padding:12px 16px;
+    border-bottom:1px solid var(--line);background:var(--surface2);
+  }
+  .dash-dot{width:9px;height:9px;border-radius:50%;background:var(--line);}
+  .dash-title{margin-left:8px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);}
+  .dash-body{padding:20px;}
+  .dash-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+  .dash-card{background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:14px;}
+  .dash-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;}
+  .dash-value{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;}
+  .dash-value.up{color:var(--accent);}
+  .dash-value.warn{color:var(--amber);}
+  .dash-list{margin-top:4px;}
+  .dash-item{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:9px 0;border-bottom:1px solid var(--line);font-size:13px;
+  }
+  .dash-item:last-child{border-bottom:none;}
+  .stock-bar{width:60px;height:5px;background:var(--line);border-radius:3px;overflow:hidden;}
+  .stock-fill{height:100%;background:var(--accent);}
+  .stock-fill.low{background:var(--amber);}
+  .status{font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:3px 9px;border-radius:5px;white-space:nowrap;}
+  .status.verified{color:var(--accent);background:var(--accent-dim);border:1px solid rgba(79,209,197,0.3);}
+  .status.pending{color:var(--amber);background:var(--amber-dim);border:1px solid rgba(242,184,75,0.3);}
+
+  /* Section shared */
+  section{padding:100px 0;border-top:1px solid var(--line);}
+  .section-tag{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);margin-bottom:12px;}
+  .section-head{max-width:600px;margin-bottom:56px;}
+  .section-head h2{font-size:34px;margin-bottom:14px;}
+  .section-head p{color:var(--muted);font-size:16px;}
+
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
+  @media(max-width:800px){.about-grid{grid-template-columns:1fr;}}
+  .about-grid p{color:var(--muted);margin-bottom:16px;font-size:15.5px;}
+  .stack-list{list-style:none;}
+  .stack-list li{
+    display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line);font-size:14.5px;
+  }
+  .stack-list li:first-child{padding-top:0;}
+  .stack-list span:first-child{color:var(--text);font-weight:500;}
+  .stack-list span:last-child{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:13px;}
+
+  /* Flagship */
+  .flagship{
+    background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:44px;
+    display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;
+  }
+  @media(max-width:800px){.flagship{grid-template-columns:1fr;padding:28px;}}
+  .flagship-badge{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--amber);
+    background:var(--amber-dim);border:1px solid rgba(242,184,75,0.3);
+    padding:5px 10px;border-radius:100px;display:inline-block;margin-bottom:16px;
+  }
+  .flagship h3{font-size:28px;margin-bottom:14px;}
+  .flagship p{color:var(--muted);margin-bottom:20px;font-size:15px;}
+  .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;}
+  .tag{
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);
+    background:var(--accent-dim);padding:5px 10px;border-radius:6px;border:1px solid rgba(79,209,197,0.25);
+  }
+  .flagship-feat{list-style:none;}
+  .flagship-feat li{
+    display:flex;gap:10px;padding:8px 0;font-size:14px;color:var(--text);
+  }
+  .flagship-feat li::before{content:"→";color:var(--accent);font-family:'JetBrains Mono',monospace;}
+
+  /* Projects grid */
+  .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  @media(max-width:900px){.proj-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:600px){.proj-grid{grid-template-columns:1fr;}}
+  .proj-card{
+    background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px;
+    transition:border-color .2s, transform .2s;
+  }
+  .proj-card:hover{border-color:var(--accent);transform:translateY(-4px);}
+  .proj-icon{
+    width:38px;height:38px;border-radius:8px;background:var(--surface2);
+    display:flex;align-items:center;justify-content:center;margin-bottom:16px;
+    font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--accent);font-size:14px;
+  }
+  .proj-card h4{font-size:17px;margin-bottom:8px;}
+  .proj-card p{color:var(--muted);font-size:13.5px;margin-bottom:14px;}
+  .proj-stack{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);
+    border-top:1px solid var(--line);padding-top:12px;}
+
+  /* Experience */
+  .timeline{border-left:1px solid var(--line);padding-left:32px;margin-left:6px;}
+  .tl-item{position:relative;padding-bottom:40px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:"";position:absolute;left:-37px;top:4px;width:11px;height:11px;
+    border-radius:50%;background:var(--bg);border:2px solid var(--accent);
+  }
+  .tl-date{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);margin-bottom:6px;}
+  .tl-item h4{font-size:18px;margin-bottom:8px;}
+  .tl-item p{color:var(--muted);font-size:14.5px;}
+
+  /* Contact */
+  .contact{
+    background:var(--surface);border:1px solid var(--line);border-radius:16px;
+    padding:56px;text-align:center;
+  }
+  .contact h2{font-size:32px;margin-bottom:14px;}
+  .contact p{color:var(--muted);margin-bottom:28px;}
+  .contact-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+
+  footer{padding:32px 0;text-align:center;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px;}
+  .proj-card.wide{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr;gap:6px 20px;align-items:start;border-color:rgba(79,209,197,0.35);}
+  .proj-card.wide .proj-icon{grid-row:1/4;margin-bottom:0;}
+  .proj-card.wide .proj-stack{border-top:none;padding-top:0;}
+  .proj-card.wide .badge{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--amber);margin-bottom:4px;}
+  @media(max-width:600px){.proj-card.wide{grid-template-columns:1fr;}.proj-card.wide .proj-icon{grid-row:auto;margin-bottom:12px;}}
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}.reveal{opacity:1;transform:none;transition:none;}.btn,.proj-card{transition:none;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">M<span>K</span>.</div>
+    <div class="navlinks">
+      <a href="#work">About</a>
+      <a href="#flagship">Flagship</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact" class="cta">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" style="border-top:none;padding-top:170px;">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span>Available for freelance & full-time work</div>
+      <h1>Full-stack engineer.<br><span class="line2">Ships real products.</span></h1>
+      <p class="lead">I'm Mohamed Khaled — a Cairo-based developer building end-to-end systems in .NET, WPF, and modern web stacks. Most recently: CairoCare Vault, a blockchain-secured medical records platform built with a team of eight.</p>
+      <div class="hero-actions">
+        <a href="#flagship" class="btn btn-primary">See CairoCare Vault →</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+    </div>
+    <div class="dash">
+      <div class="dash-top">
+        <div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div>
+        <div class="dash-title">cairocare.vault — records</div>
+      </div>
+      <div class="dash-body">
+        <div class="dash-row">
+          <div class="dash-card">
+            <div class="dash-label">Records secured</div>
+            <div class="dash-value up mono" id="salesVal">0</div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-label">Access requests today</div>
+            <div class="dash-value warn mono" id="ticketVal">0</div>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-label">Chain verification</div>
+          <div class="dash-list">
+            <div class="dash-item"><span>Blood Panel #A419</span><span class="status verified">Verified</span></div>
+            <div class="dash-item"><span>MRI Scan #B220</span><span class="status pending">Pending</span></div>
+            <div class="dash-item"><span>Prescription #C009</span><span class="status verified">Verified</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-tag">01 — ABOUT</div>
+      <h2>Built for people who need software that works on day one.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="reveal">
+        <p>I studied Information Security & Digital Forensics at Benha University, but most of my time goes into building things people actually use — from a full ERP system for repair shops to a blockchain-secured medical records platform built with a team of eight.</p>
+        <p>I move between desktop and web comfortably: .NET Clean Architecture and WPF on one side, Next.js, React, Django, and PHP on the other. I care about the parts most people skip — proper database structure, clean UI, and something that still works after the demo is over.</p>
+      </div>
+      <ul class="stack-list reveal">
+        <li><span>Desktop</span><span>.NET · WPF · Clean Architecture</span></li>
+        <li><span>Web</span><span>Next.js · React · Django · PHP</span></li>
+        <li><span>Backend</span><span>ASP.NET Core · EF Core · PostgreSQL · Redis · Docker</span></li>
+        <li><span>Data</span><span>MySQL · SQL Server · Python (Pandas)</span></li>
+        <li><span>Blockchain</span><span>Ethereum · Solidity · IPFS</span></li>
+        <li><span>Mobile</span><span>Flutter</span></li>
+        <li><span>Tools</span><span>Git · Material Design</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="flagship">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-tag">02 — FLAGSHIP PROJECT</div>
+      <h2>CairoCare Vault — blockchain-secured medical records</h2>
+    </div>
+    <div class="flagship reveal">
+      <div>
+        <div class="flagship-badge">● GRADUATION PROJECT — TEAM OF 8</div>
+        <h3>Patient records, encrypted, verified, and owned by the patient.</h3>
+        <p>Built with a team of eight at the Faculty of Computers & AI, Benha University, under Dr. Ahmed Tawfik. CairoCare Vault stores medical records off-chain in encrypted form while using the blockchain to enforce access control and prove integrity — nobody, including the hospital, can quietly alter a record.</p>
+        <div class="tag-row">
+          <span class="tag">React</span><span class="tag">Django REST</span><span class="tag">Ethereum / Solidity</span><span class="tag">IPFS</span><span class="tag">AES-256</span>
+        </div>
+      </div>
+      <ul class="flagship-feat">
+        <li>Records encrypted with AES-256 and stored off-chain via IPFS</li>
+        <li>Smart contracts enforce who can view or grant access to a record</li>
+        <li>On-chain hashes make silent edits or tampering detectable</li>
+        <li>Isolation Forest model flags anomalous access patterns</li>
+        <li>React front end + Django REST API backend</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-tag">03 — SELECTED WORK</div>
+      <h2>Projects & builds</h2>
+      <p>A mix of academic systems, e-commerce platforms, and lower-level exploration.</p>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card wide reveal">
+        <div class="proj-icon">RE</div>
+        <div>
+          <div class="badge">LATEST BUILD</div>
+          <h4>Real Estate Management System</h4>
+        </div>
+        <p>Enterprise ERP for a real-estate developer covering projects and units, sales and CRM, reservations, contracts, payments and cheques, commissions, HR, customer service, handover, reports, and audit.</p>
+        <div class="proj-stack">Next.js · TypeScript · ASP.NET Core · EF Core · PostgreSQL · Redis · Docker · JWT</div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-icon">KF</div>
+        <h4>KlayFix</h4>
+        <p>Full ERP/POS desktop app for repair & retail shops — inventory, sales, tickets, and reporting.</p>
+        <div class="proj-stack">.NET · WPF · Clean Architecture</div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-icon">MG</div>
+        <h4>MediGuard</h4>
+        <p>Smart medication management system with scheduling and alerts.</p>
+        <div class="proj-stack">.NET MVC · Web APIs · MySQL</div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-icon">LS</div>
+        <h4>LocalSpot</h4>
+        <p>Marketplace for Egyptian local brands — cart, wishlist, checkout, vendor & admin dashboards.</p>
+        <div class="proj-stack">HTML · JS · localStorage</div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-icon">GH</div>
+        <h4>GlowHaus</h4>
+        <p>Full-stack cosmetics storefront across eleven pages with a rose-and-cream aesthetic.</p>
+        <div class="proj-stack">HTML · CSS · JS · PHP</div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-icon">SE</div>
+        <h4>Salon El3amed</h4>
+        <p>Booking & e-commerce site for a salon business with online scheduling.</p>
+        <div class="proj-stack">PHP · MySQL</div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-icon">EX</div>
+        <h4>ExamScheduler</h4>
+        <p>Automated exam scheduling system built around constraint-based algorithm design.</p>
+        <div class="proj-stack">ASP.NET MVC · SQL Server</div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-icon">SS</div>
+        <h4>SteganoSuite</h4>
+        <p>Steganography toolkit for hiding and extracting data across image, audio, and video.</p>
+        <div class="proj-stack">Python · OpenCV</div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-icon">FD</div>
+        <h4>Forgery Detection Tool</h4>
+        <p>Image-forensics GUI replicating a MATLAB-style workflow with GLCM/LBP/DCT/DWT features.</p>
+        <div class="proj-stack">Python · Tkinter · OpenCV</div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-icon">3D</div>
+        <h4>Dragon Guardian</h4>
+        <p>3D game project with real-time rendering, physics, and custom game logic.</p>
+        <div class="proj-stack">C++ · OpenGL</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-tag">04 — EXPERIENCE</div>
+      <h2>Where I've worked</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-date">2023 — PRESENT</div>
+        <h4>Independent Software Developer</h4>
+        <p>Building and shipping self-directed products, including KlayFix ERP/POS and full-stack e-commerce platforms, while taking on freelance web and desktop work.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">DECATHLON EGYPT</div>
+        <h4>IT Support & Cross-Functional Team Member</h4>
+        <p>Supported the IT team with PR-facing responsibilities, alongside rotations across Supply Chain and Retail.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">SEP 2021 — JAN 2024</div>
+        <h4>Head of PR Committee, Support the Student Club</h4>
+        <p>Led public relations for the student club at Benha University.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact reveal">
+      <h2>Let's build something.</h2>
+      <p>Open to freelance projects, full-time roles, and interesting problems in general.</p>
+      <div class="contact-links">
+        <a href="mailto:m.khaled12374@gmail.com" class="btn btn-primary">m.khaled12374@gmail.com</a>
+        <a href="https://www.linkedin.com/in/mohamed-khaled-178768212" target="_blank" class="btn btn-ghost">LinkedIn →</a>
+        <a href="tel:+201110022091" class="btn btn-ghost">+20 111 002 2091</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Mohamed Khaled. Built with intent, not templates.</footer>
+
+<script>
+  // animated counters in hero dashboard
+  function animateCount(el, target, duration){
+    let start = 0;
+    const stepTime = 30;
+    const steps = duration / stepTime;
+    const inc = target / steps;
+    const timer = setInterval(() => {
+      start += inc;
+      if(start >= target){ start = target; clearInterval(timer); }
+      el.textContent = Math.floor(start).toLocaleString();
+    }, stepTime);
+  }
+  window.addEventListener('load', () => {
+    animateCount(document.getElementById('salesVal'), 4820, 1400);
+    animateCount(document.getElementById('ticketVal'), 12, 900);
+  });
+
+  // scroll reveal
+  if(!('IntersectionObserver' in window)){document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));}
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
